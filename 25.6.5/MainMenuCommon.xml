@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+    <subMenu>
+      <label>Houdini Dy Plugins</label>
+      <insertBefore>help_menu</insertBefore>
+
+    <!-- ======================== AA Subenu =========================== -->      
+      <!-- Create Alembic Archive -->
+      <!-- <scriptItem id="h.dy_create_alembic">
+        <label>Create Alembic Archive</label>
+        <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_alembic_archive.py</scriptPath>
+      </scriptItem> -->
+
+    <!-- ======================== Polygon Subenu =========================== -->
+
+      <!-- Create Polygon Submenu -->
+      <!-- <subMenu>
+        <label>Create Polygon</label> -->
+        
+        <!-- Create Sphere -->
+        <!-- <scriptItem id="h.dy_create_sphere">
+          <label>Create Sphere</label>
+          <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_sphere.py</scriptPath>
+        </scriptItem>
+         -->
+        <!-- Create Cube -->
+        <!-- <scriptItem id="h.dy_create_cube">
+          <label>Create Cube</label>
+          <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_cube.py</scriptPath>
+        </scriptItem> -->
+      <!-- </subMenu> -->
+
+    <!-- ======================== FX Subenu =========================== -->
+      <!-- FX Submenu -->
+      <subMenu>
+        <label>FX</label> 
+
+        <!-- FX Playblast -->
+        <scriptItem id="h.fx_playblast">
+          <label>FX Playblast</label>
+          <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/fx_playblast_sop.py</scriptPath>
+        </scriptItem>
+      </subMenu>
+      
+    </subMenu>
+  </menuBar>
+</mainMenu>
