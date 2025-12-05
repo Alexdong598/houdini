@@ -1,0 +1,1675 @@
+{
+    "data": {
+        "tags": {
+            "target_tag": "camera1",
+            "start_tags": [
+                "sopcreate1"
+            ],
+            "end_tags": [
+                "usdrender_rop1"
+            ]
+        },
+        "children": {
+            "camera1": {
+                "type": "camera",
+                "inputs": [
+                    {
+                        "from": "domelight1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    0
+                ],
+                "user_data": {
+                    "set_lookat": "True"
+                },
+                "parms": {
+                    "xn__karmacamerawindow_control_rhbg": "none",
+                    "aperture": "setratio",
+                    "xn__karmacameralensshader_89ag": {
+                        "expression": "hou.node(ch('xn__karmacameralensshadervop_4fbg')).shaderString() if hou.node(ch('xn__karmacameralensshadervop_4fbg')) != None else ''",
+                        "language": "Python"
+                    },
+                    "xn__karmacameralensshadervop_control_5sbg": "none",
+                    "xn__karmacamerause_lensshader_control_subg": "none",
+                    "xn__karmacameramaterialbinding_control_fwbgi": "none",
+                    "xn__karmacameratint_control_iebg": "none"
+                },
+                "parmtemplates": [
+                    {
+                        "insert_after": "folder1_2",
+                        "parmtemplates": {
+                            "folder2_3": {
+                                "type": "folder_tabs",
+                                "label": "Karma",
+                                "script_callback_language": "hscript",
+                                "parmtemplates": {
+                                    "xn__karmacamerause_lensshader_control_subg": {
+                                        "type": "string",
+                                        "label": "Use Lens Shader",
+                                        "tags": {
+                                            "sidefx::look": "icon"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": "none",
+                                        "menu_type": "control_next_parameter",
+                                        "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                    },
+                                    "xn__karmacamerause_lensshader_rhbg": {
+                                        "type": "toggle",
+                                        "label": "Use Lens Shader",
+                                        "disable_when": "{ xn__karmacamerause_lensshader_control_subg == block } { xn__karmacamerause_lensshader_control_subg == none }",
+                                        "tags": {
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluetype": "bool"
+                                        },
+                                        "script_callback_language": "hscript"
+                                    },
+                                    "xn__karmacameramaterialbinding_control_fwbgi": {
+                                        "type": "string",
+                                        "label": "Lens Material",
+                                        "tags": {
+                                            "sidefx::look": "icon"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": "none",
+                                        "menu_type": "control_next_parameter",
+                                        "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'relationship')"
+                                    },
+                                    "xn__karmacameramaterialbinding_ejbgi": {
+                                        "type": "string",
+                                        "label": "Lens Material",
+                                        "disable_when": "{ xn__karmacameramaterialbinding_control_fwbgi == block } { xn__karmacameramaterialbinding_control_fwbgi == none }",
+                                        "tags": {
+                                            "script_action": "\nimport loptoolutils\nloptoolutils.setupKarmaCameraLensMaterial(kwargs)\n",
+                                            "script_action_help": "Create a lens shader LOP.",
+                                            "script_action_icon": "VOP_kma_physicallens",
+                                            "script_action_language": "python",
+                                            "sidefx::usdpathtype": "prim",
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluename": "material:binding",
+                                            "usdvaluetype": "relationship"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "menu_type": "normal"
+                                    },
+                                    "xn__karmacameralensshadervop_control_5sbg": {
+                                        "type": "string",
+                                        "label": "Lens Shader VOP",
+                                        "tags": {
+                                            "sidefx::look": "icon"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": "none",
+                                        "menu_type": "control_next_parameter",
+                                        "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                    },
+                                    "xn__karmacameralensshadervop_4fbg": {
+                                        "type": "operator_path",
+                                        "label": "Lens Shader VOP",
+                                        "disable_when": "{ xn__karmacameralensshadervop_control_5sbg == block } { xn__karmacameralensshadervop_control_5sbg == none }",
+                                        "tags": {
+                                            "opfilter": "!!CUSTOM/MATERIAL!!",
+                                            "oprelative": ".",
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluetype": "string"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "menu_type": "normal"
+                                    },
+                                    "xn__karmacameralensshader_89ag": {
+                                        "type": "string",
+                                        "label": "Lens Shader",
+                                        "disable_when": "{ xn__karmacameralensshader_control_9nbg == block } { xn__karmacameralensshader_control_9nbg == none }",
+                                        "hidden": true,
+                                        "tags": {
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluetype": "string"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": {
+                                            "expression": "hou.node(ch('xn__karmacameralensshadervop_4fbg')).shaderString() if hou.node(ch('xn__karmacameralensshadervop_4fbg')) != None else ''",
+                                            "language": "python"
+                                        },
+                                        "menu_type": "normal"
+                                    },
+                                    "xn__karmacamerawindow_control_rhbg": {
+                                        "type": "string",
+                                        "label": "Screen Window",
+                                        "tags": {
+                                            "sidefx::look": "icon"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": "none",
+                                        "menu_type": "control_next_parameter",
+                                        "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float4')"
+                                    },
+                                    "xn__karmacamerawindow_q3ag": {
+                                        "type": "float",
+                                        "label": "Screen Window",
+                                        "num_components": 4,
+                                        "disable_when": "{ xn__karmacamerawindow_control_rhbg == block } { xn__karmacamerawindow_control_rhbg == none }",
+                                        "tags": {
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluetype": "float4"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": [
+                                            -1.0,
+                                            1.0,
+                                            -1.0,
+                                            1.0
+                                        ]
+                                    },
+                                    "xn__karmacameratint_control_iebg": {
+                                        "type": "string",
+                                        "label": "Tint",
+                                        "tags": {
+                                            "sidefx::look": "icon"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": "none",
+                                        "menu_type": "control_next_parameter",
+                                        "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float3')"
+                                    },
+                                    "xn__karmacameratint_h0ag": {
+                                        "type": "color",
+                                        "label": "Tint",
+                                        "disable_when": "{ xn__karmacameratint_control_iebg == block } { xn__karmacameratint_control_iebg == none }",
+                                        "tags": {
+                                            "spare_category": "View",
+                                            "uiscope": "None",
+                                            "usdapischema": "KarmaCameraAPI",
+                                            "usdvaluetype": "float3"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "default_value": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "sopcreate1": {
+                "type": "sopcreate",
+                "position": [
+                    0,
+                    3.39
+                ],
+                "editables": {
+                    "sopnet/create": {
+                        "type": "subnet"
+                    }
+                }
+            },
+            "materiallibrary1": {
+                "type": "materiallibrary",
+                "inputs": [
+                    {
+                        "from": "sopcreate1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    2.26
+                ]
+            },
+            "domelight1": {
+                "type": "domelight::2.0",
+                "inputs": [
+                    {
+                        "from": "materiallibrary1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    1.13
+                ],
+                "parmtemplates": [
+                    {
+                        "insert_after": "folder0_2",
+                        "parmtemplates": {
+                            "folder1_3": {
+                                "type": "folder_tabs",
+                                "label": "Arnold",
+                                "tags": {
+                                    "group_default": "1"
+                                },
+                                "script_callback_language": "hscript",
+                                "parmtemplates": {
+                                    "arnold_light_group": {
+                                        "type": "folder_collapsible",
+                                        "label": "Light",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "arnoldsamples_control": {
+                                                "type": "string",
+                                                "label": "samples",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__primvarsarnoldsamples_cbbg": {
+                                                "type": "integer",
+                                                "label": "Samples",
+                                                "disable_when": "{ arnoldsamples_control == block } { arnoldsamples_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "int"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal",
+                                                "default_value": 1,
+                                                "max_value": 8,
+                                                "strict_min": true
+                                            },
+                                            "arnoldvolume_samples_control": {
+                                                "type": "string",
+                                                "label": "volume_samples",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__primvarsarnoldvolume_samples_qmbg": {
+                                                "type": "integer",
+                                                "label": "Volume Samples",
+                                                "disable_when": "{ arnoldvolume_samples_control == block } { arnoldvolume_samples_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "int"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal",
+                                                "default_value": 2,
+                                                "max_value": 8,
+                                                "strict_min": true
+                                            },
+                                            "arnoldroundness_control": {
+                                                "type": "string",
+                                                "label": "roundness",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldroundness_lebg": {
+                                                "type": "float",
+                                                "label": "Roundness",
+                                                "disable_when": "{ arnoldroundness_control == block } { arnoldroundness_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldangle_control": {
+                                                "type": "string",
+                                                "label": "angle",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldangle_26ag": {
+                                                "type": "float",
+                                                "label": "Angle",
+                                                "disable_when": "{ arnoldangle_control == block } { arnoldangle_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "max_value": 90.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldspread_control": {
+                                                "type": "string",
+                                                "label": "spread",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldspread_p8ag": {
+                                                "type": "float",
+                                                "label": "Spread",
+                                                "disable_when": "{ arnoldspread_control == block } { arnoldspread_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldsoft_edge_control": {
+                                                "type": "string",
+                                                "label": "soft_edge",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldsoft_edge_lebg": {
+                                                "type": "float",
+                                                "label": "Soft Edge",
+                                                "disable_when": "{ arnoldsoft_edge_control == block } { arnoldsoft_edge_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldportal_control": {
+                                                "type": "string",
+                                                "label": "portal",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__primvarsarnoldportal_p8ag": {
+                                                "type": "toggle",
+                                                "label": "Portal",
+                                                "disable_when": "{ arnoldportal_control == block } { arnoldportal_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            },
+                                            "arnoldportal_mode_control": {
+                                                "type": "string",
+                                                "label": "portal_mode",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__primvarsarnoldportal_mode_uhbg": {
+                                                "type": "string",
+                                                "label": "Portal Mode",
+                                                "disable_when": "{ arnoldportal_mode_control == block } { arnoldportal_mode_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "off",
+                                                "menu_type": "normal",
+                                                "menu_items": [
+                                                    {
+                                                        "token": "off",
+                                                        "label": "Off"
+                                                    },
+                                                    {
+                                                        "token": "interior_only",
+                                                        "label": "Interior Only"
+                                                    },
+                                                    {
+                                                        "token": "interior_exterior",
+                                                        "label": "Interior Exterior"
+                                                    }
+                                                ]
+                                            },
+                                            "arnoldresolution_control": {
+                                                "type": "string",
+                                                "label": "resolution",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__primvarsarnoldresolution_7fbg": {
+                                                "type": "integer",
+                                                "label": "Resolution",
+                                                "disable_when": "{ arnoldresolution_control == block } { arnoldresolution_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "int"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal",
+                                                "default_value": 512,
+                                                "max_value": 1024,
+                                                "strict_min": true
+                                            },
+                                            "arnoldaspect_ratio_control": {
+                                                "type": "string",
+                                                "label": "aspect_ratio",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldaspect_ratio_hjbg": {
+                                                "type": "float",
+                                                "label": "Aspect Ratio",
+                                                "disable_when": "{ arnoldaspect_ratio_control == block } { arnoldaspect_ratio_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 20.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldlens_radius_control": {
+                                                "type": "string",
+                                                "label": "lens_radius",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldlens_radius_uhbg": {
+                                                "type": "float",
+                                                "label": "Lens Radius",
+                                                "disable_when": "{ arnoldlens_radius_control == block } { arnoldlens_radius_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "strict_min": true
+                                            },
+                                            "arnoldaov_indirect_control": {
+                                                "type": "string",
+                                                "label": "aov_indirect",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__primvarsarnoldaov_indirect_hjbg": {
+                                                "type": "toggle",
+                                                "label": "AOV Indirect",
+                                                "disable_when": "{ arnoldaov_indirect_control == block } { arnoldaov_indirect_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            }
+                                        }
+                                    },
+                                    "arnold_shadows_group": {
+                                        "type": "folder_collapsible",
+                                        "label": "Shadows",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "arnoldshadow_color_control": {
+                                                "type": "string",
+                                                "label": "shadow_color",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float3')"
+                                            },
+                                            "xn__primvarsarnoldshadow_color_hjbg": {
+                                                "type": "color",
+                                                "label": "Shadow Color",
+                                                "disable_when": "{ arnoldshadow_color_control == block } { arnoldshadow_color_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float3"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            },
+                                            "arnoldshadow_density_control": {
+                                                "type": "string",
+                                                "label": "shadow_density",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldshadow_density_qmbg": {
+                                                "type": "float",
+                                                "label": "Shadow Density",
+                                                "disable_when": "{ arnoldshadow_density_control == block } { arnoldshadow_density_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldcast_shadows_control": {
+                                                "type": "string",
+                                                "label": "cast_shadows",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__primvarsarnoldcast_shadows_hjbg": {
+                                                "type": "toggle",
+                                                "label": "Cast Shadows",
+                                                "disable_when": "{ arnoldcast_shadows_control == block } { arnoldcast_shadows_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": true
+                                            },
+                                            "arnoldcast_volumetric_shadows_control": {
+                                                "type": "string",
+                                                "label": "cast_volumetric_shadows",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__primvarsarnoldcast_volumetric_shadows_e1bg": {
+                                                "type": "toggle",
+                                                "label": "Cast Volumetric Shadows",
+                                                "disable_when": "{ arnoldcast_volumetric_shadows_control == block } { arnoldcast_volumetric_shadows_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": true
+                                            }
+                                        }
+                                    },
+                                    "arnold_contribution_group": {
+                                        "type": "folder_collapsible",
+                                        "label": "Contribution",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "arnoldcamera_control": {
+                                                "type": "string",
+                                                "label": "camera",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldcamera_p8ag": {
+                                                "type": "float",
+                                                "label": "Camera",
+                                                "disable_when": "{ arnoldcamera_control == block } { arnoldcamera_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnolddiffuse_control": {
+                                                "type": "string",
+                                                "label": "diffuse",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnolddiffuse_cbbg": {
+                                                "type": "float",
+                                                "label": "Diffuse",
+                                                "disable_when": "{ arnolddiffuse_control == block } { arnolddiffuse_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldspecular_control": {
+                                                "type": "string",
+                                                "label": "specular",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldspecular_ycbg": {
+                                                "type": "float",
+                                                "label": "Specular",
+                                                "disable_when": "{ arnoldspecular_control == block } { arnoldspecular_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldtransmission_control": {
+                                                "type": "string",
+                                                "label": "transmission",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldtransmission_hjbg": {
+                                                "type": "float",
+                                                "label": "Transmission",
+                                                "disable_when": "{ arnoldtransmission_control == block } { arnoldtransmission_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldsss_control": {
+                                                "type": "string",
+                                                "label": "sss",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldsss_t3ag": {
+                                                "type": "float",
+                                                "label": "SubSurface",
+                                                "disable_when": "{ arnoldsss_control == block } { arnoldsss_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldvolume_control": {
+                                                "type": "string",
+                                                "label": "volume",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldvolume_p8ag": {
+                                                "type": "float",
+                                                "label": "Volume",
+                                                "disable_when": "{ arnoldvolume_control == block } { arnoldvolume_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldindirect_control": {
+                                                "type": "string",
+                                                "label": "indirect",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__primvarsarnoldindirect_ycbg": {
+                                                "type": "float",
+                                                "label": "Indirect",
+                                                "disable_when": "{ arnoldindirect_control == block } { arnoldindirect_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "arnoldmax_bounces_control": {
+                                                "type": "string",
+                                                "label": "max_bounces",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__primvarsarnoldmax_bounces_uhbg": {
+                                                "type": "integer",
+                                                "label": "Max Bounces",
+                                                "disable_when": "{ arnoldmax_bounces_control == block } { arnoldmax_bounces_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "int"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal",
+                                                "default_value": 999,
+                                                "max_value": 1000,
+                                                "strict_min": true
+                                            },
+                                            "arnoldaov_control": {
+                                                "type": "string",
+                                                "label": "aov",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__primvarsarnoldaov_t3ag": {
+                                                "type": "string",
+                                                "label": "AOV Light Group",
+                                                "disable_when": "{ arnoldaov_control == block } { arnoldaov_control == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "help": "Write out the light contribution to a separate AOV subset with a corresponding name. For example, all lights with this parameter set to \"fill\" will contribute to the \"RGBA_fill\" and \"volume_fill\" AOVs, which then contain a subset of the light from the RGBA and volume AOVs respectively. Emission from other sources and lights that have not been assigned an aov name will contribute to the \"RGBA_default\" and \"volume_default\" AOVs. All light AOVs can be output to a single EXR driver using output syntax like \"RGBA_*\". For the time being, light AOVs are only supported for volumes, and lighting from surfaces and the atmosphere will end up in the default light AOV. A maximum of 8 different light AOVs are supported, although a given AOV can contain a bundle of any number of lights.",
+                                                "menu_type": "string_replace",
+                                                "item_generator_script": "__import__('htoa.properties').properties.solarisLightAovMenu()"
+                                            }
+                                        }
+                                    },
+                                    "arnold_shaders_group": {
+                                        "type": "folder_collapsible",
+                                        "label": "Shaders",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "arnoldshaders_control": {
+                                                "type": "string",
+                                                "label": "shaders",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__primvarsarnoldshaders_cbbg": {
+                                                "type": "string",
+                                                "label": "Shaders",
+                                                "disable_when": "{ arnoldshaders_control == block } { arnoldshaders_control == none }",
+                                                "tags": {
+                                                    "script_action": "import loputils\nkwargs['ctrl'] = True\nloputils.selectPrimsInParm(kwargs, False)",
+                                                    "script_action_help": "Select a primitive using the primitive picker dialog",
+                                                    "script_action_icon": "BUTTONS_reselect",
+                                                    "sidefx::usdpathtype": "prim",
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "folder1_4": {
+                                "type": "folder_tabs",
+                                "label": "Karma",
+                                "tags": {
+                                    "group_default": "1"
+                                },
+                                "script_callback_language": "hscript",
+                                "parmtemplates": {
+                                    "Sampling": {
+                                        "type": "folder_collapsible",
+                                        "label": "Sampling",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "xn__inputskarmalightmisbias_control_krbff": {
+                                                "type": "string",
+                                                "label": "MIS Bias",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightmisbias_jebff": {
+                                                "type": "float",
+                                                "label": "MIS Bias",
+                                                "disable_when": "{ xn__inputskarmalightmisbias_control_krbff == block } { xn__inputskarmalightmisbias_control_krbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Sampling",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "min_value": -1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true,
+                                                "strict_max": true
+                                            },
+                                            "xn__inputskarmalightsamplingquality_control_l4bff": {
+                                                "type": "string",
+                                                "label": "Sampling Quality",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightsamplingquality_krbff": {
+                                                "type": "float",
+                                                "label": "Sampling Quality",
+                                                "disable_when": "{ xn__inputskarmalightsamplingquality_control_l4bff == block } { xn__inputskarmalightsamplingquality_control_l4bff == none }",
+                                                "tags": {
+                                                    "spare_category": "Sampling",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0
+                                            },
+                                            "xn__inputskarmalightsamplingmode_control_pzbff": {
+                                                "type": "string",
+                                                "label": "Sampling Mode",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__inputskarmalightsamplingmode_ombff": {
+                                                "type": "string",
+                                                "label": "Sampling Mode",
+                                                "disable_when": "{ xn__inputskarmalightsamplingmode_control_pzbff == block } { xn__inputskarmalightsamplingmode_control_pzbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Sampling",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "token"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "Auto",
+                                                "menu_type": "normal",
+                                                "menu_items": [
+                                                    {
+                                                        "token": "Auto",
+                                                        "label": "Auto"
+                                                    },
+                                                    {
+                                                        "token": "Uniform",
+                                                        "label": "Uniform"
+                                                    },
+                                                    {
+                                                        "token": "Light Tree",
+                                                        "label": "Light Tree"
+                                                    }
+                                                ]
+                                            },
+                                            "xn__inputskarmalighthdri_max_isize_control_y2bff": {
+                                                "type": "string",
+                                                "label": "Maximum HDRI Size",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'int')"
+                                            },
+                                            "xn__inputskarmalighthdri_max_isize_xpbff": {
+                                                "type": "integer",
+                                                "label": "Maximum HDRI Size",
+                                                "disable_when": "{ xn__inputskarmalighthdri_max_isize_control_y2bff == block } { xn__inputskarmalighthdri_max_isize_control_y2bff == none }",
+                                                "tags": {
+                                                    "spare_category": "Sampling",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "int"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal",
+                                                "default_value": 2048
+                                            },
+                                            "xn__inputskarmalightportalmisbias_control_c1bff": {
+                                                "type": "string",
+                                                "label": "Portal MIS Bias",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightportalmisbias_bobff": {
+                                                "type": "float",
+                                                "label": "Portal MIS Bias",
+                                                "disable_when": "{ xn__inputskarmalightportalmisbias_control_c1bff == block } { xn__inputskarmalightportalmisbias_control_c1bff == none }",
+                                                "tags": {
+                                                    "spare_category": "Sampling",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "min_value": -1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true,
+                                                "strict_max": true
+                                            }
+                                        }
+                                    },
+                                    "Light": {
+                                        "type": "folder_collapsible",
+                                        "label": "Light",
+                                        "tags": {
+                                            "group_default": "1",
+                                            "group_type": "collapsible"
+                                        },
+                                        "script_callback_language": "hscript",
+                                        "parmtemplates": {
+                                            "xn__inputskarmalightshader_control_xpbff": {
+                                                "type": "string",
+                                                "label": "Light Shader",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__inputskarmalightshader_wcbff": {
+                                                "type": "string",
+                                                "label": "Light Shader",
+                                                "disable_when": "{ xn__inputskarmalightshader_control_xpbff == block } { xn__inputskarmalightshader_control_xpbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal"
+                                            },
+                                            "xn__inputskarmalightactiveradius_control_pzbff": {
+                                                "type": "string",
+                                                "label": "Active Radius",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightactiveradius_ombff": {
+                                                "type": "float",
+                                                "label": "Active Radius",
+                                                "disable_when": "{ xn__inputskarmalightactiveradius_control_pzbff == block } { xn__inputskarmalightactiveradius_control_pzbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": -1.0
+                                            },
+                                            "xn__inputskarmalightpointradius_control_2xbff": {
+                                                "type": "string",
+                                                "label": "Point Light Radius",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightpointradius_1kbff": {
+                                                "type": "float",
+                                                "label": "Point Light Radius",
+                                                "disable_when": "{ xn__inputskarmalightpointradius_control_2xbff == block } { xn__inputskarmalightpointradius_control_2xbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "max_value": 1.0,
+                                                "strict_min": true
+                                            },
+                                            "xn__inputskarmalightsinglesided_control_2xbff": {
+                                                "type": "string",
+                                                "label": "Single Sided",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__inputskarmalightsinglesided_1kbff": {
+                                                "type": "toggle",
+                                                "label": "Single Sided",
+                                                "disable_when": "{ xn__inputskarmalightsinglesided_control_2xbff == block } { xn__inputskarmalightsinglesided_control_2xbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": true
+                                            },
+                                            "xn__inputskarmalightrenderlightgeo_control_y2bff": {
+                                                "type": "string",
+                                                "label": "Render Light Geometry",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__inputskarmalightrenderlightgeo_xpbff": {
+                                                "type": "toggle",
+                                                "label": "Render Light Geometry",
+                                                "disable_when": "{ xn__inputskarmalightrenderlightgeo_control_y2bff == block } { xn__inputskarmalightrenderlightgeo_control_y2bff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            },
+                                            "xn__inputskarmalightlightgeocastsshadow_control_3bcff": {
+                                                "type": "string",
+                                                "label": "Light Geometry Casts Shadow",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__inputskarmalightlightgeocastsshadow_2xbff": {
+                                                "type": "toggle",
+                                                "label": "Light Geometry Casts Shadow",
+                                                "disable_when": "{ xn__inputskarmalightlightgeocastsshadow_control_3bcff == block } { xn__inputskarmalightlightgeocastsshadow_control_3bcff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            },
+                                            "xn__inputskarmalightlpetag_control_xpbff": {
+                                                "type": "string",
+                                                "label": "LPE Tag",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__inputskarmalightlpetag_wcbff": {
+                                                "type": "string",
+                                                "label": "LPE Tag",
+                                                "disable_when": "{ xn__inputskarmalightlpetag_control_xpbff == block } { xn__inputskarmalightlpetag_control_xpbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "menu_type": "normal"
+                                            },
+                                            "xn__inputskarmalightillumbackground_control_l4bff": {
+                                                "type": "string",
+                                                "label": "Illuminate Background Holdout",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__inputskarmalightillumbackground_krbff": {
+                                                "type": "toggle",
+                                                "label": "Illuminate Background Holdout",
+                                                "disable_when": "{ xn__inputskarmalightillumbackground_control_l4bff == block } { xn__inputskarmalightillumbackground_control_l4bff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript"
+                                            },
+                                            "xn__inputskarmalightcontribs_control_6sbff": {
+                                                "type": "string",
+                                                "label": "Contributions",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'string')"
+                                            },
+                                            "xn__inputskarmalightcontribs_5fbff": {
+                                                "type": "string",
+                                                "label": "Contributions",
+                                                "disable_when": "{ xn__inputskarmalightcontribs_control_6sbff == block } { xn__inputskarmalightcontribs_control_6sbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "string"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "*",
+                                                "menu_type": "string_replace",
+                                                "menu_items": [
+                                                    {
+                                                        "token": "*",
+                                                        "label": "Any"
+                                                    },
+                                                    {
+                                                        "token": "diffuse",
+                                                        "label": "Diffuse"
+                                                    },
+                                                    {
+                                                        "token": "reflect",
+                                                        "label": "Reflect"
+                                                    },
+                                                    {
+                                                        "token": "coat",
+                                                        "label": "Coat"
+                                                    },
+                                                    {
+                                                        "token": "sss",
+                                                        "label": "SSS"
+                                                    },
+                                                    {
+                                                        "token": "volume",
+                                                        "label": "Volume"
+                                                    },
+                                                    {
+                                                        "token": "diffuse|volume|sss",
+                                                        "label": "Any diffuse"
+                                                    },
+                                                    {
+                                                        "token": "-diffuse & -volume & -sss",
+                                                        "label": "Any non-diffuse"
+                                                    }
+                                                ]
+                                            },
+                                            "xn__inputskarmalightcontributescaustics_control_3bcff": {
+                                                "type": "string",
+                                                "label": "Contributes to Caustics",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'bool')"
+                                            },
+                                            "xn__inputskarmalightcontributescaustics_2xbff": {
+                                                "type": "toggle",
+                                                "label": "Contributes to Caustics",
+                                                "disable_when": "{ xn__inputskarmalightcontributescaustics_control_3bcff == block } { xn__inputskarmalightcontributescaustics_control_3bcff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "bool"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": true
+                                            },
+                                            "xn__inputskarmalightspread_control_xpbff": {
+                                                "type": "string",
+                                                "label": "Spread",
+                                                "tags": {
+                                                    "sidefx::look": "icon"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": "none",
+                                                "menu_type": "control_next_parameter",
+                                                "item_generator_script": "import loputils\nreturn loputils.createEditPropertiesControlMenu(kwargs, 'float')"
+                                            },
+                                            "xn__inputskarmalightspread_wcbff": {
+                                                "type": "float",
+                                                "label": "Spread",
+                                                "disable_when": "{ xn__inputskarmalightspread_control_xpbff == block } { xn__inputskarmalightspread_control_xpbff == none }",
+                                                "tags": {
+                                                    "spare_category": "Light",
+                                                    "uiscope": "None",
+                                                    "usdapischema": "KarmaLightAPI",
+                                                    "usdvaluetype": "float"
+                                                },
+                                                "script_callback_language": "hscript",
+                                                "default_value": 1.0,
+                                                "max_value": 1.0,
+                                                "strict_min": true,
+                                                "strict_max": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "karmarendersettings": {
+                "type": "karmarenderproperties",
+                "inputs": [
+                    {
+                        "from": "camera1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    -1.13
+                ],
+                "user_data": {
+                    "sidefx::parm_filter_text_pattern": "tonem"
+                },
+                "parms": {
+                    "resolution": {
+                        "value": [
+                            1280,
+                            {
+                                "expression": "pythonexprf(\"__import__('loputils').computeResolutionParameter(True, True)\")"
+                            }
+                        ],
+                        "locked": [
+                            false,
+                            true
+                        ]
+                    },
+                    "tonemapcurve": {
+                        "locked": true,
+                        "points": [
+                            {
+                                "pos": 0.0,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve1pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.05,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve2pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.1,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve3pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.15000000000000002,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve4pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.2,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve5pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.25,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve6pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.30000000000000004,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve7pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.35000000000000003,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve8pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.4,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve9pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.45,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve10pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.5,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve11pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.55,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve12pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.6000000000000001,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve13pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.65,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve14pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.7000000000000001,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve15pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.75,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve16pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.8,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve17pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.8500000000000001,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve18pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.9,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve19pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 0.9500000000000001,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve20pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            },
+                            {
+                                "pos": 1.0,
+                                "value": {
+                                    "expression": "primuv(\"sopnet/tonemap_curve\", 0, \"P\", 1, ch(\"tonemapcurve21pos\"), 0)"
+                                },
+                                "interp": "linear"
+                            }
+                        ]
+                    },
+                    "oracle_ociodisplay": "sRGB - Display",
+                    "oracle_ocioview": "Un-tone-mapped"
+                }
+            },
+            "usdrender_rop1": {
+                "type": "usdrender_rop",
+                "inputs": [
+                    {
+                        "from": "karmarendersettings",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    -2.26
+                ]
+            }
+        }
+    },
+    "info": {
+        "author": "yu.dong",
+        "created": "January 13, 2025 - 12:11:17",
+        "houdini_version": "20.5.278",
+        "data_version": "1.0",
+        "comment": ""
+    },
+    "properties": {
+        "name": "yu.dong::basicWorkflow",
+        "label": "basicWorkflow",
+        "recipe_category": "tab_tool_recipe",
+        "visible": true,
+        "nodetype_category": "Lop",
+        "nodetype_name": "camera"
+    },
+    "tool": {
+        "tab_submenus": [
+            "Recipes"
+        ],
+        "network_categories": [
+            "Lop"
+        ],
+        "icon": "BUTTONS_recipe"
+    },
+    "options": {
+        "nodes_only": false,
+        "anchor_children": true,
+        "children": true,
+        "anchor_editables": true,
+        "editables": true,
+        "flags": false,
+        "parms": true,
+        "parms_as_brief": true,
+        "evaluate_parmvalues": false,
+        "parmtemplates": "spare_only",
+        "metadata": false,
+        "verbose": false
+    }
+}

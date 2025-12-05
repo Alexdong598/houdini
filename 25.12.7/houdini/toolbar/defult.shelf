@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- ==================== Tool Shelves Definition ====================== -->
+  <!-- Define Tool Shelf LGT -->
+  <toolshelf name="LGT" label="LGT">
+    <memberTool name="aaa1"/>
+  </toolshelf>
+
+  <!-- Define Tool Shelf ENV -->
+  <toolshelf name="ENV" label="ENV">
+    <memberTool name="assetAssemble_LOP"/>
+    <memberTool name="GaeaPros_SOP"/>
+    <memberTool name="Scatter_LOP"/>
+    <memberTool name="scatterHDA"/>
+    <memberTool name="cameraCut_SOP"/>
+    <memberTool name="terrainCut_SOP"/>
+    <memberTool name="USD_Component_Input"/>
+
+  </toolshelf>
+
+  <!-- Define Tool Shelf FX -->
+  <toolshelf name="FX" label="FX">
+  </toolshelf>
+
+  <!-- Define Tool Shelf Custom -->
+  <toolshelf name="Custom" label="Custom">
+    <memberTool name="readJSON"/>
+    <memberTool name="lookDev_Kit"/>
+    <memberTool name="hdaVersionUpdate"/>
+  </toolshelf>
+
+  <!-- ====================== Tool Definition ====================== -->
+                <!-- ======= LGT Tool ======== -->
+  <!-- Define Tool aaa1 -->
+  <tool name="aaa1" label="aaa1" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[
+
+from python_function.Dock.LGT_dock import run_aaa1
+run_aaa1()
+]]></script>
+  </tool>
+
+                <!-- ======= ENV Tool ======== -->
+
+  <!-- Define Tool assetAssemble_LOP -->
+  <tool name="assetAssemble_LOP" label="assetAssemble_LOP" icon="OBJ_light_pxrdistant">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.assetAssemble_LOP as assetAssemble_LOP_M 
+#reload(assetAssemble_LOP_M) 
+assetAssemble_LOP_C = assetAssemble_LOP_M.assetAssemble_LOP
+assetAssemble_LOP_C()
+]]></script>
+  </tool>
+
+  <!-- Define Tool GaeaPros_SOP -->
+  <tool name="GaeaPros_SOP" label="GaeaPros_SOP" icon="Gaea">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.GaeaPros_SOP as GaeaPros_SOP_M 
+reload(GaeaPros_SOP_M) 
+GaeaPros_SOP_C = GaeaPros_SOP_M.GaeaPros_SOP
+GaeaPros_SOP_C()
+]]></script>
+  </tool>
+
+  <!-- Define Tool Scatter_LOP -->
+  <tool name="Scatter_LOP" label="Scatter_LOP" icon="scatter">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.Scatter_LOP as Scatter_LOP_M 
+reload(Scatter_LOP_M) 
+Scatter_LOP_C = Scatter_LOP_M.Scatter_LOP
+Scatter_LOP_C()
+]]></script>
+  </tool>
+
+  <!-- Define Tool scatterHDA -->
+  <tool name="scatterHDA" label="scatterHDA" icon="scatter02">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.QuickInstanceScatter as QuickInstanceScatter_M 
+reload(QuickInstanceScatter_M) 
+QuickInstanceScatter_C = QuickInstanceScatter_M.QuickInstanceScatter
+QuickInstanceScatter_UI = QuickInstanceScatter_C(hou.ui.mainQtWindow())
+QuickInstanceScatter_UI.show()
+]]></script>
+  </tool>
+
+  <!-- Define Tool cameraCut_SOP -->
+  <tool name="cameraCut_SOP" label="cameraCut_SOP" icon="camera">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.CameraCullingTool as CameraCullingTool_M 
+reload(CameraCullingTool_M) 
+CameraCullingTool_C = CameraCullingTool_M.CameraCullingTool
+CameraCullingTool_UI = CameraCullingTool_C(hou.ui.mainQtWindow())
+CameraCullingTool_UI.show()
+]]></script>
+  </tool>
+
+  <!-- Define Tool terrainCut_SOP -->
+  <tool name="terrainCut_SOP" label="terrainCut_SOP" icon="terrainCut">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.terrainCut as terrainCut_M 
+reload(terrainCut_M) 
+terrainCut_C = terrainCut_M.terrainCut
+terrainCut_C()
+]]></script>
+  </tool>
+
+  <!-- Define Tool USD_Component_Input -->
+  <tool name="USD_Component_Input" label="USD_Component_Input" icon="terrainCut">
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.ENV.USD_Component_Input as USD_Component_Input_M
+reload(USD_Component_Input_M) 
+USD_Component_Input_C = USD_Component_Input_M.USD_Component_Input
+USD_Component_Input_C()
+]]></script>
+  </tool>
+
+                <!-- ======= FX Tool ======== -->
+
+
+                <!-- ======= Custom Tool ======== -->
+  <!-- Define Tool readJSON -->
+  <tool name="readJSON" label="readJSON" icon="json"> 
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import JSONRead.JSON_read as JSON_read_M 
+reload(JSON_read_M)
+
+JSON_read_M.main()
+]]></script>
+  </tool>
+
+  <tool name="lookDev_Kit" label="lookDev_Kit" icon="lookDev"> 
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.CUSTOM.lookDev_Kit as lookDev_Kit_M 
+reload(lookDev_Kit_M) 
+lookDev_Kit_C = lookDev_Kit_M.lookDev_Kit
+lookDev_Kit_C()
+]]></script>
+  </tool>
+
+  <tool name="hdaVersionUpdate" label="hdaVersionUpdate" icon="lookDev"> 
+    <script scriptType="python"><![CDATA[
+import hou, os, sys
+from importlib import reload
+import python_function.CUSTOM.hda_version_updater as hda_version_updater_M 
+hda_version_updater_M.run()
+]]></script>
+  </tool>
+
+  <!-- ====================== Tool Shelves Edit Definition ====================== -->
+  <shelfSetEdit name="shelf_set_1" fileLocation="//af/x/app/ext/houdini/20.0.653/platform-windows/vc_redist_2019-14.28/python-3.9/houdini/toolbar/ShelfDefinitions.shelf">
+    <addMemberToolshelf name="LGT" inPosition="15"/><!-- set LGT Tool Shelf to position 15 -->
+    <addMemberToolshelf name="ENV" inPosition="16"/><!-- set ENV Tool Shelf to position 16 -->
+    <addMemberToolshelf name="FX" inPosition="17"/><!-- set FX Tool Shelf to position 17 -->
+    <addMemberToolshelf name="Custom" inPosition="18"/><!-- set Custom Tool Shelf to position 18 -->
+</shelfDocument>

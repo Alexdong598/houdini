@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <shelfSetEdit name="shelf_set_1" fileLocation="//af/x/app/ext/houdini/20.0.653/platform-windows/vc_redist_2019-14.28/python-3.9/houdini/toolbar/ShelfDefinitions.shelf"/>
+</shelfDocument>

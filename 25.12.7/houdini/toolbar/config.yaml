@@ -1,0 +1,10 @@
+# config.yaml
+modules:
+  - name: assetAssemble_LOP
+    function: run_asset_assemble
+    params:
+      file_path: "data/asset.json"
+  - name: basicWorkflow
+    function: run_basic_workflow
+    params:
+      file_path: "data/workflow.json"
