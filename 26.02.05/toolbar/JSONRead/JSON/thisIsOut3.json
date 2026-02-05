@@ -1,0 +1,169 @@
+{
+    "data": {
+        "tags": {
+            "target_tag": "null1",
+            "start_tags": [
+                "file1"
+            ],
+            "end_tags": [
+                "output0"
+            ]
+        },
+        "children": {
+            "null1": {
+                "type": "null",
+                "inputs": [
+                    {
+                        "from": "__dot1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    0
+                ],
+                "user_data": {
+                    "nodeshape": "bone"
+                }
+            },
+            "file1": {
+                "type": "file",
+                "position": [
+                    -2.34,
+                    2.55
+                ],
+                "color": [
+                    0.98,
+                    0.28,
+                    0.28
+                ]
+            },
+            "output0": {
+                "type": "output",
+                "inputs": [
+                    {
+                        "from": "null1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    -1.85
+                ],
+                "color": [
+                    1,
+                    0.53,
+                    0.62
+                ],
+                "user_data": {
+                    "nodeshape": "cigar"
+                },
+                "parms": {
+                    "outputidx": 0
+                }
+            },
+            "__stickynote1": {
+                "type": "StickyNote",
+                "text": "hello world",
+                "text_color": [
+                    0,
+                    0,
+                    0
+                ],
+                "draw_background": true,
+                "position": [
+                    2.42,
+                    1.26
+                ],
+                "size": [
+                    2.5,
+                    2.5
+                ],
+                "color": [
+                    1,
+                    0.97,
+                    0.52
+                ]
+            },
+            "__dot1": {
+                "type": "NetworkDot",
+                "inputs": [
+                    {
+                        "from": "file1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.5,
+                    2.21
+                ],
+                "color": [
+                    0.7,
+                    0.7,
+                    0.7
+                ]
+            },
+            "__netbox1": {
+                "type": "NetworkBox",
+                "box_content": [
+                    "null1",
+                    "output0"
+                ],
+                "position": [
+                    -0.4,
+                    -2.05
+                ],
+                "size": [
+                    2.8,
+                    2.65
+                ],
+                "color": [
+                    1,
+                    0.73,
+                    0
+                ]
+            }
+        }
+    },
+    "info": {
+        "author": "yu.dong",
+        "created": "February 18, 2025 - 10:48:23",
+        "houdini_version": "20.5.278",
+        "data_version": "1.0",
+        "comment": ""
+    },
+    "properties": {
+        "name": "yu.dong::thisIsOut3",
+        "label": "thisIsOut3",
+        "recipe_category": "tab_tool_recipe",
+        "visible": true,
+        "nodetype_category": "Sop",
+        "nodetype_name": "null"
+    },
+    "tool": {
+        "tab_submenus": [
+            "Recipes"
+        ],
+        "network_categories": [
+            "Sop"
+        ],
+        "icon": "BUTTONS_recipe"
+    },
+    "options": {
+        "nodes_only": false,
+        "anchor_children": true,
+        "children": true,
+        "anchor_editables": true,
+        "editables": true,
+        "flags": false,
+        "parms": true,
+        "parms_as_brief": true,
+        "evaluate_parmvalues": false,
+        "parmtemplates": "spare_only",
+        "metadata": false,
+        "verbose": false
+    }
+}

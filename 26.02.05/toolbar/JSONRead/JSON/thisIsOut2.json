@@ -1,0 +1,611 @@
+{
+    "data": {
+        "tags": {
+            "target_tag": "null1",
+            "start_tags": [
+                "arnold_procedural_viewport1",
+                "file1"
+            ],
+            "end_tags": [
+                "output0"
+            ]
+        },
+        "children": {
+            "null1": {
+                "type": "null",
+                "inputs": [
+                    {
+                        "from": "attribtransfer1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    0
+                ]
+            },
+            "file1": {
+                "type": "file",
+                "position": [
+                    -2.34,
+                    3.62
+                ]
+            },
+            "output0": {
+                "type": "output",
+                "inputs": [
+                    {
+                        "from": "null1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    -1.85
+                ],
+                "parms": {
+                    "outputidx": 0
+                }
+            },
+            "arnold_procedural_viewport1": {
+                "type": "arnold_procedural_viewport",
+                "position": [
+                    3.65,
+                    4.54
+                ],
+                "children": {
+                    "target_sop": {
+                        "type": "object_merge",
+                        "position": [
+                            6.31,
+                            -2.57
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "numobj": [
+                                {
+                                    "objpath#": "`chsop(\"../../ar_proxy_sop\")`"
+                                }
+                            ],
+                            "xformtype": "local"
+                        }
+                    },
+                    "viewport_proxy": {
+                        "type": "switch",
+                        "inputs": [
+                            {
+                                "from": "null1",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "is_bbox",
+                                "from_index": 0,
+                                "to_index": 1
+                            },
+                            {
+                                "from": "empty_error2",
+                                "from_index": 0,
+                                "to_index": 2
+                            }
+                        ],
+                        "position": [
+                            3.56,
+                            -5.52
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "input": {
+                                "expression": "ch(\"../../ar_viewport_proxy\")"
+                            }
+                        }
+                    },
+                    "OUT_render": {
+                        "type": "null",
+                        "position": [
+                            0.71,
+                            -7.77
+                        ],
+                        "flags": {
+                            "colordefault": false,
+                            "render": true
+                        }
+                    },
+                    "OUT_bbox": {
+                        "type": "null",
+                        "inputs": [
+                            {
+                                "from": "viewport_proxy",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            3.56,
+                            -7.77
+                        ],
+                        "flags": {
+                            "colordefault": false,
+                            "display": true
+                        }
+                    },
+                    "is_ass_file": {
+                        "type": "switch",
+                        "inputs": [
+                            {
+                                "from": "is_proxy_file",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "box1",
+                                "from_index": 0,
+                                "to_index": 1
+                            }
+                        ],
+                        "position": [
+                            4.65,
+                            0.54
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "input": {
+                                "expression": "# if we need to display the global bounding box for the ass file, quickest to use the metadata and not the procedural API\nhas_proxy_file = hou.parm('../../ar_enable_proxy').eval()\nfilename = hou.parm('../../ar_proxy_filename').eval() if has_proxy_file else hou.parm('../../ar_filename').eval()\nreturn filename and (filename.endswith('.ass') or filename.endswith('.ass.gz'))",
+                                "language": "Python"
+                            }
+                        }
+                    },
+                    "ass_bbox": {
+                        "type": "arnold_asstoc",
+                        "position": [
+                            6.47,
+                            3.43
+                        ],
+                        "flags": {
+                            "colordefault": false,
+                            "compress": false
+                        },
+                        "parms": {
+                            "ass_file": "`chs(\"../../ar_filename\")`"
+                        }
+                    },
+                    "is_bbox": {
+                        "type": "switch",
+                        "inputs": [
+                            {
+                                "from": "is_proxy_file",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "soft_edges",
+                                "from_index": 0,
+                                "to_index": 1
+                            }
+                        ],
+                        "position": [
+                            1.21,
+                            -3.81
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "input": {
+                                "expression": "ch(\"../../ar_display\") in [1,2]",
+                                "language": "Python"
+                            }
+                        }
+                    },
+                    "empty_error2": {
+                        "type": "arnold_empty_error",
+                        "inputs": [
+                            {
+                                "from": "target_sop",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            5.2,
+                            -3.81
+                        ],
+                        "flags": {
+                            "colordefault": false,
+                            "compress": false
+                        }
+                    },
+                    "box1": {
+                        "type": "box",
+                        "inputs": [
+                            {
+                                "from": "ass_bbox",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            6.47,
+                            2.12
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "vertexnormals": true
+                        }
+                    },
+                    "soft_edges": {
+                        "type": "subnet",
+                        "inputs": [
+                            {
+                                "from": "is_global_bbox",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            2.9,
+                            -2.57
+                        ],
+                        "children": {
+                            "edges1": {
+                                "type": "arnold::edges",
+                                "inputs": [
+                                    {
+                                        "from": "1",
+                                        "from_index": 0,
+                                        "to_index": 0
+                                    }
+                                ],
+                                "position": [
+                                    0,
+                                    4.09
+                                ],
+                                "flags": {
+                                    "colordefault": false,
+                                    "display": true,
+                                    "render": true
+                                }
+                            },
+                            "resample2": {
+                                "type": "resample",
+                                "inputs": [
+                                    {
+                                        "from": "edges1",
+                                        "from_index": 0,
+                                        "to_index": 0
+                                    }
+                                ],
+                                "position": [
+                                    0,
+                                    2.95
+                                ],
+                                "flags": {
+                                    "colordefault": false
+                                },
+                                "parms": {
+                                    "dolength": false,
+                                    "dosegs": true,
+                                    "segs": 3,
+                                    "useattribs": false,
+                                    "allequal": false
+                                }
+                            },
+                            "delete2": {
+                                "type": "delete",
+                                "inputs": [
+                                    {
+                                        "from": "carve2",
+                                        "from_index": 0,
+                                        "to_index": 0
+                                    }
+                                ],
+                                "position": [
+                                    0,
+                                    0.69
+                                ],
+                                "flags": {
+                                    "colordefault": false
+                                },
+                                "parms": {
+                                    "entity": "edge",
+                                    "groupop": "range",
+                                    "range": [
+                                        1,
+                                        {
+                                            "expression": "$N"
+                                        }
+                                    ],
+                                    "select": [
+                                        {
+                                            "expression": "ch(\"select2\") - 2"
+                                        },
+                                        {
+                                            "expression": "ch(\"../resample2/segs\")"
+                                        }
+                                    ]
+                                }
+                            },
+                            "carve2": {
+                                "type": "carve",
+                                "inputs": [
+                                    {
+                                        "from": "resample2",
+                                        "from_index": 0,
+                                        "to_index": 0
+                                    }
+                                ],
+                                "position": [
+                                    0,
+                                    1.82
+                                ],
+                                "flags": {
+                                    "colordefault": false
+                                },
+                                "parms": {
+                                    "domainu1": 0.0,
+                                    "secondu": true,
+                                    "domainu2": 1.0,
+                                    "onlybreakpoints": "on",
+                                    "allubreakpoints": true,
+                                    "keepout": true,
+                                    "extractop": "xpoint",
+                                    "keepOriginal": true
+                                }
+                            },
+                            "attribcreate_Cd": {
+                                "type": "attribcreate::2.0",
+                                "inputs": [
+                                    {
+                                        "from": "delete2",
+                                        "from_index": 0,
+                                        "to_index": 0
+                                    }
+                                ],
+                                "position": [
+                                    0,
+                                    -0.51
+                                ],
+                                "flags": {
+                                    "colordefault": false
+                                },
+                                "parms": {
+                                    "numattr": [
+                                        {
+                                            "name#": "Cd",
+                                            "createvarmap#": true,
+                                            "typeinfo#": "color",
+                                            "precision#": "32",
+                                            "size#": 3,
+                                            "value#v": [
+                                                0.0,
+                                                0.66,
+                                                1.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "1": {
+                                "type": "SubnetIndirectInput",
+                                "position": [
+                                    0,
+                                    6
+                                ]
+                            }
+                        }
+                    },
+                    "procedural_file": {
+                        "type": "arnold::procedural_proxy",
+                        "position": [
+                            0,
+                            5.22
+                        ],
+                        "parms": {
+                            "ar_filename": "`chs(\"../../ar_filename\")`",
+                            "ar_frame": {
+                                "expression": "ch(\"../../ar_frame\")"
+                            },
+                            "ar_procedural_type": "`chs(\"../../ar_procedural_type\")`",
+                            "ar_display_type": "`chs(\"../../ar_display\")`"
+                        }
+                    },
+                    "is_global_bbox": {
+                        "type": "switch",
+                        "inputs": [
+                            {
+                                "from": "is_proxy_file",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "is_ass_file",
+                                "from_index": 0,
+                                "to_index": 1
+                            }
+                        ],
+                        "position": [
+                            3.88,
+                            -0.97
+                        ],
+                        "flags": {
+                            "colordefault": false
+                        },
+                        "parms": {
+                            "input": {
+                                "expression": "ch(\"../../ar_display\") == 1",
+                                "language": "Python"
+                            }
+                        }
+                    },
+                    "procedural_proxy": {
+                        "type": "arnold::procedural_proxy",
+                        "position": [
+                            4.16,
+                            5.22
+                        ],
+                        "parms": {
+                            "ar_filename": "`chs(\"../../ar_proxy_filename\")`",
+                            "ar_frame": {
+                                "expression": "ch(\"../../ar_frame\")"
+                            },
+                            "ar_procedural_type": "`chs(\"../../ar_procedural_type\")`",
+                            "ar_display_type": "`chs(\"../../ar_display\")`"
+                        }
+                    },
+                    "is_proxy_file": {
+                        "type": "switch",
+                        "inputs": [
+                            {
+                                "from": "procedural_file",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "procedural_proxy",
+                                "from_index": 0,
+                                "to_index": 1
+                            }
+                        ],
+                        "position": [
+                            1.8,
+                            3.27
+                        ],
+                        "parms": {
+                            "input": {
+                                "expression": "ch(\"../../ar_enable_proxy\")"
+                            }
+                        }
+                    },
+                    "null1": {
+                        "type": "null",
+                        "position": [
+                            1.04,
+                            -5.88
+                        ]
+                    }
+                }
+            },
+            "attribtransfer1": {
+                "type": "attribtransfer",
+                "inputs": [
+                    {
+                        "from": "__dot1",
+                        "from_index": 0,
+                        "to_index": 0
+                    },
+                    {
+                        "from": "__dot2",
+                        "from_index": 0,
+                        "to_index": 1
+                    }
+                ],
+                "position": [
+                    0.17,
+                    1.62
+                ]
+            },
+            "__dot1": {
+                "type": "NetworkDot",
+                "inputs": [
+                    {
+                        "from": "file1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.5,
+                    3.28
+                ],
+                "color": [
+                    0.7,
+                    0.7,
+                    0.7
+                ]
+            },
+            "__dot2": {
+                "type": "NetworkDot",
+                "inputs": [
+                    {
+                        "from": "arnold_procedural_viewport1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    4.15,
+                    2.17
+                ],
+                "color": [
+                    0.7,
+                    0.7,
+                    0.7
+                ]
+            },
+            "__netbox1": {
+                "type": "NetworkBox",
+                "box_content": [
+                    "null1",
+                    "output0"
+                ],
+                "position": [
+                    -0.4,
+                    -2.05
+                ],
+                "size": [
+                    2.8,
+                    2.65
+                ]
+            }
+        }
+    },
+    "info": {
+        "author": "yu.dong",
+        "created": "February 18, 2025 - 10:45:08",
+        "houdini_version": "20.5.278",
+        "data_version": "1.0",
+        "comment": ""
+    },
+    "properties": {
+        "name": "yu.dong::thisIsOut2",
+        "label": "thisIsOut2",
+        "recipe_category": "tab_tool_recipe",
+        "visible": true,
+        "nodetype_category": "Sop",
+        "nodetype_name": "null"
+    },
+    "tool": {
+        "tab_submenus": [
+            "Recipes"
+        ],
+        "network_categories": [
+            "Sop"
+        ],
+        "icon": "BUTTONS_recipe"
+    },
+    "options": {
+        "nodes_only": false,
+        "anchor_children": true,
+        "children": true,
+        "anchor_editables": true,
+        "editables": true,
+        "flags": false,
+        "parms": true,
+        "parms_as_brief": true,
+        "evaluate_parmvalues": false,
+        "parmtemplates": "spare_only",
+        "metadata": false,
+        "verbose": false
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "data": {
+        "tags": {
+            "target_tag": "terrainCut1",
+            "start_tags": [
+                "terrainCut1"
+            ],
+            "end_tags": [
+                "terrainCut1"
+            ]
+        },
+        "children": {
+            "terrainCut1": {
+                "type": "yu.dong::dev::terrainCut::1.0",
+                "position": [
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "info": {
+        "author": "yu.dong",
+        "created": "February 18, 2025 - 12:36:25",
+        "houdini_version": "20.5.278",
+        "data_version": "1.0",
+        "comment": ""
+    },
+    "properties": {
+        "name": "yu.dong::terrainCut",
+        "label": "terrainCut",
+        "recipe_category": "tab_tool_recipe",
+        "visible": true,
+        "nodetype_category": "Sop",
+        "nodetype_name": "yu.dong::dev::terrainCut::1.0"
+    },
+    "tool": {
+        "tab_submenus": [
+            "Recipes"
+        ],
+        "network_categories": [
+            "Sop"
+        ],
+        "icon": "BUTTONS_recipe"
+    },
+    "options": {
+        "nodes_only": false,
+        "anchor_children": true,
+        "children": true,
+        "anchor_editables": true,
+        "editables": true,
+        "flags": false,
+        "parms": true,
+        "parms_as_brief": true,
+        "evaluate_parmvalues": false,
+        "parmtemplates": "spare_only",
+        "metadata": false,
+        "verbose": false
+    }
+}

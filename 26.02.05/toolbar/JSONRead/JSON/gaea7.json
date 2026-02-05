@@ -1,0 +1,849 @@
+{
+    "data": {
+        "tags": {
+            "target_tag": "After_Xform1",
+            "start_tags": [
+                "heightfield_file2",
+                "convert2",
+                "heightfield2"
+            ],
+            "end_tags": [
+                "GaeaProcessed1",
+                "Output_to_Gaea1"
+            ]
+        },
+        "children": {
+            "After_Xform1": {
+                "type": "null",
+                "inputs": [
+                    {
+                        "from": "xform7",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    0
+                ]
+            },
+            "attribtransfer2": {
+                "type": "attribtransfer",
+                "inputs": [
+                    {
+                        "from": "attribwrangle4",
+                        "from_index": 0,
+                        "to_index": 0
+                    },
+                    {
+                        "from": "After_Xform1",
+                        "from_index": 0,
+                        "to_index": 1
+                    }
+                ],
+                "position": [
+                    0.02,
+                    -12.44
+                ],
+                "parms": {
+                    "detailattribs": true,
+                    "detailattriblist": "sceneArea sizeRate xform2 xform3",
+                    "primitiveattribs": false,
+                    "pointattribs": false
+                }
+            },
+            "xform3inverse1": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "attribtransfer2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.02,
+                    -13.66
+                ],
+                "parms": {
+                    "t": [
+                        0.0,
+                        {
+                            "expression": "detail(0,\"xform3\",13)"
+                        },
+                        0.0
+                    ],
+                    "invertxform": true
+                }
+            },
+            "xform2inverse1": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "xform3inverse1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.02,
+                    -14.92
+                ],
+                "parms": {
+                    "t": [
+                        {
+                            "expression": "detail(0,\"xform2\",12)"
+                        },
+                        {
+                            "expression": "detail(0,\"xform2\",13)"
+                        },
+                        {
+                            "expression": "detail(0,\"xform2\",14)"
+                        }
+                    ],
+                    "invertxform": true
+                }
+            },
+            "AfterGaea_erosion1": {
+                "type": "null",
+                "inputs": [
+                    {
+                        "from": "xform8",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.02,
+                    -18
+                ]
+            },
+            "Output_to_Gaea1": {
+                "type": "heightfield_output",
+                "inputs": [
+                    {
+                        "from": "heightfield_project2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    -6.51,
+                    -3.95
+                ],
+                "parms": {
+                    "specify_res": true,
+                    "resolution": [
+                        4096,
+                        4096
+                    ],
+                    "actual_res": [
+                        1000,
+                        1000
+                    ],
+                    "red_channel": "height",
+                    "red_out_range": "auto",
+                    "red_to_range": [
+                        0.0,
+                        {
+                            "expression": "1/1.5"
+                        }
+                    ],
+                    "green_channel": "height",
+                    "green_out_range": "auto",
+                    "green_to_range": [
+                        0.0,
+                        {
+                            "expression": "1/1.5"
+                        }
+                    ],
+                    "blue_channel": "height",
+                    "blue_out_range": "auto",
+                    "blue_to_range": [
+                        0.0,
+                        {
+                            "expression": "1/1.5"
+                        }
+                    ],
+                    "fill_alpha_channel": false,
+                    "file_out": "`chs(\"../../file_out\")`"
+                },
+                "editables": {
+                    "cop2net1/single_out": {
+                        "type": "rop_comp",
+                        "parms": {
+                            "trange": {
+                                "expression": "ch(\"../../trange\")"
+                            },
+                            "f": [
+                                {
+                                    "expression": "ch(\"../../f1\")"
+                                },
+                                {
+                                    "expression": "ch(\"../../f2\")"
+                                },
+                                {
+                                    "expression": "ch(\"../../f3\")"
+                                }
+                            ],
+                            "coppath": "../../cop2net1/flip1",
+                            "res": [
+                                1,
+                                1
+                            ],
+                            "copoutput": "`chs(\"../../output\")`",
+                            "scopeplanes": "*",
+                            "convertcolorspace": "off",
+                            "pngtga_alpha_multiplication": "unpremult"
+                        }
+                    },
+                    "cop2net1/tiled_out": {
+                        "type": "rop_comp",
+                        "parms": {
+                            "trange": {
+                                "expression": "ch(\"../../trange\")"
+                            },
+                            "f": [
+                                {
+                                    "expression": "ch(\"../../out_rangex\")"
+                                },
+                                {
+                                    "expression": "ch(\"../../out_rangey\")"
+                                },
+                                {
+                                    "expression": "ch(\"../../out_rangez\")"
+                                }
+                            ],
+                            "coppath": "../../cop2net1/window1",
+                            "res": [
+                                512,
+                                512
+                            ],
+                            "copoutput": "`chs(\"../../file_out\")`",
+                            "scopeplanes": "*",
+                            "convertcolorspace": "off",
+                            "pixelcrop": [
+                                0,
+                                0,
+                                511,
+                                511
+                            ],
+                            "index": {
+                                "expression": "$N+1"
+                            },
+                            "pngtga_alpha_multiplication": "unpremult"
+                        },
+                        "parmtemplates": [
+                            {
+                                "insert_after": "copswitcher_4",
+                                "parmtemplates": {
+                                    "index": {
+                                        "type": "integer",
+                                        "label": "Index",
+                                        "script_callback_language": "hscript",
+                                        "menu_type": "normal"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "GaeaProcessed1": {
+                "type": "null",
+                "inputs": [
+                    {
+                        "from": "attribwrangle3",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.25,
+                    -21.91
+                ]
+            },
+            "convert2": {
+                "type": "convert",
+                "position": [
+                    -0.23,
+                    7.48
+                ]
+            },
+            "xform5": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "Match_Area_Size2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.01,
+                    4.03
+                ],
+                "parms": {
+                    "scale": {
+                        "expression": "detail(0,\"sizeRate\",0)"
+                    },
+                    "p": [
+                        {
+                            "expression": "$CEX"
+                        },
+                        {
+                            "expression": "$CEY"
+                        },
+                        {
+                            "expression": "$CEZ"
+                        }
+                    ]
+                }
+            },
+            "heightfield2": {
+                "type": "heightfield",
+                "position": [
+                    -4.15,
+                    -0.61
+                ],
+                "parms": {
+                    "gridspacing": 1.0
+                }
+            },
+            "heightfield_project2": {
+                "type": "heightfield_project",
+                "inputs": [
+                    {
+                        "from": "heightfield2",
+                        "from_index": 0,
+                        "to_index": 0
+                    },
+                    {
+                        "from": "After_Xform1",
+                        "from_index": 0,
+                        "to_index": 1
+                    }
+                ],
+                "position": [
+                    -2.57,
+                    -2.35
+                ]
+            },
+            "convertheightfield3": {
+                "type": "convertheightfield",
+                "inputs": [
+                    {
+                        "from": "heightfield_project2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    -2.57,
+                    -4.55
+                ]
+            },
+            "attribpromote3": {
+                "type": "attribpromote",
+                "inputs": [
+                    {
+                        "from": "convertheightfield3",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    -2.58,
+                    -6.02
+                ],
+                "parms": {
+                    "inname": "P",
+                    "outclass": "detail",
+                    "method": "max"
+                }
+            },
+            "attribfrommap2": {
+                "type": "attribfrommap",
+                "inputs": [
+                    {
+                        "from": "AfterGaea_erosion1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.25,
+                    -19.66
+                ],
+                "parms": {
+                    "filename": "X:/operation_rs2-1805/fsn/2000/3d/layout/sourceimages/gaea/Outside_v02.png",
+                    "reload": "0",
+                    "export_attribute": "Outside",
+                    "attrib_type": "float"
+                }
+            },
+            "heightfield_file2": {
+                "type": "heightfield_file",
+                "position": [
+                    -6.51,
+                    -5.5
+                ],
+                "parms": {
+                    "filename": ""
+                }
+            },
+            "attribwrangle3": {
+                "type": "attribwrangle",
+                "inputs": [
+                    {
+                        "from": "attribfrommap2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.25,
+                    -20.79
+                ],
+                "parms": {
+                    "snippet": "float Outside = @Outside;\nif(Outside==0)\n{\n    removepoint(0,@ptnum);\n}"
+                }
+            },
+            "xform6": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "xform5",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.01,
+                    2.76
+                ],
+                "parms": {
+                    "t": [
+                        {
+                            "expression": "-$CEX"
+                        },
+                        {
+                            "expression": "-$CEY"
+                        },
+                        {
+                            "expression": "-$CEZ"
+                        }
+                    ],
+                    "p": [
+                        {
+                            "expression": "$CEX"
+                        },
+                        {
+                            "expression": "$CEY"
+                        },
+                        {
+                            "expression": "$CEZ"
+                        }
+                    ],
+                    "addattrib": true,
+                    "outputattrib": "xform2"
+                }
+            },
+            "convertheightfield4": {
+                "type": "convertheightfield",
+                "inputs": [
+                    {
+                        "from": "heightfield_file2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    -6.51,
+                    -6.93
+                ]
+            },
+            "attribpromote4": {
+                "type": "attribpromote",
+                "inputs": [
+                    {
+                        "from": "convertheightfield4",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    -6.52,
+                    -8.05
+                ],
+                "parms": {
+                    "inname": "P",
+                    "outclass": "detail",
+                    "method": "max"
+                }
+            },
+            "attribwrangle4": {
+                "type": "attribwrangle",
+                "inputs": [
+                    {
+                        "from": "attribpromote4",
+                        "from_index": 0,
+                        "to_index": 0
+                    },
+                    {
+                        "from": "attribpromote3",
+                        "from_index": 0,
+                        "to_index": 1
+                    }
+                ],
+                "position": [
+                    -2.45,
+                    -9.82
+                ],
+                "parms": {
+                    "snippet": "vector oldSize = detail(1,\"P\",0);\nfloat oldHeight = getcomp(oldSize,1);\n\nvector newSize = detail(0,\"P\",0);\nfloat newHeight = getcomp(newSize,1);\n\nfloat rate = oldHeight/newHeight;\n@P.y*=rate;"
+                }
+            },
+            "xform7": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "xform6",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0,
+                    1.26
+                ],
+                "parms": {
+                    "t": [
+                        0.0,
+                        {
+                            "expression": "-$YMIN"
+                        },
+                        0.0
+                    ],
+                    "p": [
+                        0.0,
+                        {
+                            "expression": "$YMIN"
+                        },
+                        0.0
+                    ],
+                    "addattrib": true,
+                    "outputattrib": "xform3"
+                }
+            },
+            "xform8": {
+                "type": "xform",
+                "inputs": [
+                    {
+                        "from": "xform2inverse1",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.02,
+                    -16.36
+                ],
+                "parms": {
+                    "scale": {
+                        "expression": "detail(0,\"sizeRate\",0)"
+                    },
+                    "p": [
+                        {
+                            "expression": "$CEX"
+                        },
+                        {
+                            "expression": "$CEY"
+                        },
+                        {
+                            "expression": "$CEZ"
+                        }
+                    ],
+                    "invertxform": true
+                }
+            },
+            "Match_Area_Size2": {
+                "type": "subnet",
+                "inputs": [
+                    {
+                        "from": "convert2",
+                        "from_index": 0,
+                        "to_index": 0
+                    }
+                ],
+                "position": [
+                    0.01,
+                    6.05
+                ],
+                "children": {
+                    "output0": {
+                        "type": "output",
+                        "inputs": [
+                            {
+                                "from": "attribdelete1",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            2.25,
+                            1.42
+                        ],
+                        "flags": {
+                            "display": true,
+                            "render": true
+                        }
+                    },
+                    "attribwrangle11": {
+                        "type": "attribwrangle",
+                        "inputs": [
+                            {
+                                "from": "attribpromote1",
+                                "from_index": 0,
+                                "to_index": 0
+                            },
+                            {
+                                "from": "attribpromote2",
+                                "from_index": 0,
+                                "to_index": 1
+                            }
+                        ],
+                        "position": [
+                            2.37,
+                            3.69
+                        ],
+                        "parms": {
+                            "class": "detail",
+                            "snippet": "float sceneArea = detail(0,\"sceneArea\",0);\nfloat refArea = detail(1,\"refArea\",0);\nf@sizeRate = pow(refArea/sceneArea,1.0/2.0);"
+                        }
+                    },
+                    "attribdelete1": {
+                        "type": "attribdelete",
+                        "inputs": [
+                            {
+                                "from": "attribwrangle11",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            2.38,
+                            2.59
+                        ],
+                        "parms": {
+                            "doptdel": false,
+                            "dovtxdel": false,
+                            "doprimdel": false,
+                            "dtldel": "v1"
+                        }
+                    },
+                    "measure1": {
+                        "type": "measure::2.0",
+                        "inputs": [
+                            {
+                                "from": "1",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            1.99,
+                            7.1
+                        ],
+                        "parms": {
+                            "integrationdomain": "throughout",
+                            "colorramp": [
+                                {
+                                    "pos": 0.0,
+                                    "value": [
+                                        0.0,
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "interp": "linear"
+                                },
+                                {
+                                    "pos": 0.5,
+                                    "value": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "interp": "linear"
+                                },
+                                {
+                                    "pos": 1.0,
+                                    "value": [
+                                        1.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "interp": "linear"
+                                }
+                            ]
+                        }
+                    },
+                    "attribpromote1": {
+                        "type": "attribpromote",
+                        "inputs": [
+                            {
+                                "from": "measure1",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            1.99,
+                            5.88
+                        ],
+                        "parms": {
+                            "inname": "area",
+                            "inclass": "primitive",
+                            "outclass": "detail",
+                            "useoutname": true,
+                            "outname": "sceneArea"
+                        }
+                    },
+                    "heightfield1": {
+                        "type": "heightfield",
+                        "position": [
+                            -2.16,
+                            9.57
+                        ]
+                    },
+                    "convertheightfield1": {
+                        "type": "convertheightfield",
+                        "inputs": [
+                            {
+                                "from": "heightfield1",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            -2.16,
+                            8.55
+                        ]
+                    },
+                    "measure2": {
+                        "type": "measure::2.0",
+                        "inputs": [
+                            {
+                                "from": "convertheightfield1",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            -2.16,
+                            7.41
+                        ],
+                        "parms": {
+                            "integrationdomain": "throughout",
+                            "colorramp": [
+                                {
+                                    "pos": 0.0,
+                                    "value": [
+                                        0.0,
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "interp": "linear"
+                                },
+                                {
+                                    "pos": 0.5,
+                                    "value": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "interp": "linear"
+                                },
+                                {
+                                    "pos": 1.0,
+                                    "value": [
+                                        1.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "interp": "linear"
+                                }
+                            ]
+                        }
+                    },
+                    "attribpromote2": {
+                        "type": "attribpromote",
+                        "inputs": [
+                            {
+                                "from": "measure2",
+                                "from_index": 0,
+                                "to_index": 0
+                            }
+                        ],
+                        "position": [
+                            -2.16,
+                            6.19
+                        ],
+                        "parms": {
+                            "inname": "area",
+                            "inclass": "primitive",
+                            "outclass": "detail",
+                            "useoutname": true,
+                            "outname": "refArea"
+                        }
+                    },
+                    "1": {
+                        "type": "SubnetIndirectInput",
+                        "position": [
+                            0,
+                            6
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "info": {
+        "author": "yu.dong",
+        "created": "January 23, 2025 - 16:07:16",
+        "houdini_version": "20.5.278",
+        "data_version": "1.0",
+        "comment": ""
+    },
+    "properties": {
+        "name": "yu.dong::gaea7",
+        "label": "gaea7",
+        "recipe_category": "tab_tool_recipe",
+        "visible": true,
+        "nodetype_category": "Sop",
+        "nodetype_name": "null"
+    },
+    "tool": {
+        "tab_submenus": [
+            "Recipes"
+        ],
+        "network_categories": [
+            "Sop"
+        ],
+        "icon": "BUTTONS_recipe"
+    },
+    "options": {
+        "nodes_only": false,
+        "anchor_children": true,
+        "children": true,
+        "anchor_editables": true,
+        "editables": true,
+        "flags": false,
+        "parms": true,
+        "parms_as_brief": true,
+        "evaluate_parmvalues": false,
+        "parmtemplates": "spare_only",
+        "metadata": false,
+        "verbose": false
+    }
+}
