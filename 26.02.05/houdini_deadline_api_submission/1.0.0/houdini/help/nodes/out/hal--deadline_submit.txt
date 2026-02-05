@@ -1,0 +1,245 @@
+= HAL Deadline Submit =
+
+#type: node
+#context: out
+#internal: hal::deadline_submit
+#version: 0.1
+#tags: HAL, deadline, sim, simulate, farm, submission, submit
+#bestbet: deadline submit
+
+"""Deadline Submission ROP for any kind of ROP Network."""
+
+== Overview ==
+
+Using this HDA, you can submit any of your ROP Networks to Deadline. It
+supports Fetch ROPs and a custom override system (which is explained in more
+detail further below.)
+
+For a more detailed documentation (including the TD documentation), click
+[here|http://docs/houdini_deadline_api_submission].
+
+@parameters
+
+    == Main ==
+
+        Render:
+            Start the submission to Deadline / local render.
+
+        renderdialog:
+            Open the render dialog for settings of local rendering.
+
+    == Options ==
+
+        Dry Run:
+            Start the submission process without actually submitting anything
+            to Deadline. This also prints information about the submission
+            created. Useful for debugging.
+
+        Render Locally:
+            Render the input locally instead of submitting it to Deadline.
+
+        Advanced Options:
+            Display Advanced Options for the render submission.
+
+        Debug Mode:
+            Display even more parameters of this HDA. This includes cached
+            information about the Deadline configuration.
+
+    == Job Info ==
+
+        Overview:
+            All of these settings will be passed to the created Deadline Jobs.
+            Parameters created here can be overwritten by any of the overrides
+            created on the submitted ROPs.
+
+        Name:
+            The name of the created job. $OS will be replaced by the name of
+            the submitted ROP. The default value should be fine for most
+            submission, but creating overrides for this parameter allows for
+            better HDA development.
+
+        Comment:
+            A comment added to the submitted jobs. By default, the Wedge Values
+            will be used as a comment (if the submission contains wedges).
+
+        Pool:
+            The Main Pool to submit the job to. Our current Deadline
+            configuration prioritizes pool over priority, so this is an
+            important setting.
+
+        Secondary Pool:
+            If there are no available slaves in the first pool, this will be
+            used as a fallback pool. Leave this at "all" to make sure your job
+            is still able to start even when the farm is quite busy.
+
+        Group:
+            The Deadline Group to submit the job to. Only slaves inside this
+            group will pick up the job.
+
+        Priority:
+            Jobs will be submitted with this Priority. There may be hard-cap on
+            the max priority configured by your IT department.
+
+        Frames per Task:
+            Controls how many frames a single task will render. When submitting
+            jobs that take a lot of time to calculate the first frame but are
+            faster from there, setting this to a higher value allows the job
+            to finish faster.
+
+        Machine Limit:
+            Controls how many machines can simultaneously pick up a task from
+            the same job.
+
+        Submit As:
+            Active jobs will queue up immediately, Suspended jobs need someone
+            to manually resume them via Deadline Monitor. (Right-Click -->
+            Resume Job)
+
+    == Cached Info ==
+
+        Overview:
+            Only visible when Advanced Options are turned on. This contains the
+            cached information about the Deadline configuration. If you get a
+            setup from another facility, you may need to update the cached
+            information to display the correct pools and groups of your
+            facility.
+
+        Refresh Pools:
+            Refresh cached information about the Deadline Pools.
+
+        Refresh Groups:
+            Refresh cached information about the Deadline Groups.
+
+        Deadline Pools Cache:
+            The cached information about Deadline Pools. (Only visible in Debug
+            Mode)
+
+        Deadline Groups Cache:
+            The cached information about Deadline Groups. (Only visible in
+            Debug Mode)
+
+== Overrides Workflow ==
+
+    To allow for more flexibility in the submission process, you can add
+    override parameters to any of your ROPs. These overrides are accessible
+    via the Right-Click Menu on ROPs and can be configured by a TD on a show
+    and facility basis.
+
+    The resolution of these parameters is the following:
+            - Defaults set by a TD per show or facility.
+            - These defaults get overwritten by settings on the HAL Deadline
+              Submit ROP.
+            - These options get overwritten by overrides on the single ROP
+              being submitted.
+            - These options get overwritten by some hard-coded standards.
+              (Single-Frame Renders on Render Jobs, ...)
+
+    == Job Parameters ==
+
+        Any Deadline Job Parameters (a list can be found
+        [here|http://docs/houdini_deadline_submission/overrides.html#job_overrides])
+        can be overwritten by creating Override Parameters on the submitted
+        ROP. To add the default overrides important for a job, simply right
+        click on a ROP and select "Add Job Overrides".
+
+    == Plug-In Parameters ==
+
+        Similar to the Job Parameters, Plug-In Parameters can be overwritten
+        too. Plug-In Overrides can be added by Right-Clicking on a ROP and
+        choosing "Add Plug-In Overrides".
+
+        Plug-In Overrides also contain some special overrides, listed here:
+            - *PrePass*: If a ROP is marked as a PrePass, it will not be
+              submitted. Instead, it will run once before the submission
+               process has started. This is useful for any kind of Python
+              Callback added via a Shell ROP with a Pre-Render Script.
+            - *Submit Children as separate Jobs*: By default, ROPs with
+              children will be submitted as a single job. Turning this on, will
+              submit each of the children as a separate job.
+            - *Render Mode*: If it's a Render ROP (Mantra, Arnold, ...), this
+              controls how to render the job. The default is `Cache & Render`.
+                - Cache & Render: Create a render cache (.ifd, .ass, ...) and
+                  render these files as a separate job.
+                - Cache Only: Only create the render cache. Useful for creating
+                  Arnold StandIn files, for example.
+                - Render from Houdini: Render this ROP straight out of Houdini.
+                  Useful when generating the cache file takes too long because
+                  of instances or similar reasons.
+
+== Wedging ==
+
+    Wedging allows you to create multiple version of the same cache. This is
+    useful if you want to create multiple versions of a single simulation to
+    see what parameters work best, but can also be used in other ways like
+    using different clusters of a Pyro Sim.
+
+    Wedges are set up with another entry you will find in your Right-Click Menu
+    on ROPs: "Add Wedge Parameters".
+
+    :note:
+        Wedge Values get multiplied with each other.
+
+        This means that if you wedge 3 separate parameters (width: 1, 2, 3.
+        height: 1, 2. depth: 1, 2, 3), this will create 18 separate wedges (3 x
+        2 x 3). The total amount of wedges created is always displayed on top
+        of the Wedge Parms parameter.
+
+    In the HAL Wedge Tab added by clicking this option you will find a couple
+    of options:
+
+        Use HAL Wedges:
+            An easy way to enable the useage of Wedges on this ROP.
+
+        Wedge Parms:
+            The amount of parameters that you want to wedge.
+
+        Name:
+            Identifier of this wedge parameter. If this is left empty, the name
+            of the parameter will be used.
+
+        Channel:
+            The Parameter that will be wedged. This can be a channel reference
+            like "`ch("/obj/geo1/box1/sizex")`" or the absolute path to the
+            parameter like "/obj/geo1/box1/sizex". Channel references are
+            preferred though, because they can be relative and will update if
+            the parents are renamed.
+
+        Range:
+            The Range of the values, including the max range.
+            Example: Range 2-3 with 3 steps will create 3 wedges: 2, 2.5, 3.
+
+        Steps:
+            The steps to take between the range values. Setting this to 1 will
+            create 1 wedge using the min value.
+
+
+
+== Creating a compatible ROP HDA ==
+
+    The override workflow allows for very customizable submission of ROP HDAs,
+    if set up correctly.
+
+    Here are a couple of things to keep in mind while building your HDA:
+        - Any Parameters found
+          [here|https://docs.thinkboxsoftware.com/products/deadline/8.0/1_User%20Manual/manual/manual-submission.html#job-info-file-options]
+          can be overwritten by creating a parameter called
+          "hal_job_override_ParameterName".
+        - If you want this override to be en-/disabled via a Checkbox, you can
+          also add a CheckBox parameter called
+          "do_override_hal_job_override_ParameterName".
+        - If you want your ROP to be submitted as one job, you don't need to do
+          anything special.
+        - If you want to submit the children of your ROP as separate Jobs, make
+          sure to add a CheckBox parameter called
+          "hal_submit_children_separately" and set it to 1.
+        - If you want to have some of your children submitted as a group and
+          the other's submitted separately, you can create a SubNet inside your
+          HDA, add the "hal_submit_children_separately" parameter to both
+          your HDA *and* your SubNet, set this parameter to 0 on your SubNet
+          and to 1 on your HDA.
+        - All of these parameters need to be on the ROP that will be submitted.
+          This means if you have a ROP that allows for it to be submitted as a
+          group or as separate jobs, all of these parameters need to exist on
+          all the ROPs *and* the HDA.
+        - Make sure all your ROPs that are submitted have a parameter
+          recognized by `houdini_deadline_api_submission.naming.get_output_parm()`.

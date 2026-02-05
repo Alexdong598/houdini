@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menuDocument>
+    <menu>
+        <scriptItem id="opmenu.add_job_overrides">
+            <insertAfter>opmenu.saveoptype</insertAfter>
+            <label>Add Job Overrides</label>
+            <context>
+            <expression>
+<![CDATA[
+node = kwargs["node"]
+if node.type().category().name()=='Driver':
+    return True
+return False
+]]>
+            </expression>
+	    </context>
+            <scriptCode>
+<![CDATA[
+from houdini_deadline_api_submission import parm_utils
+
+node = kwargs['node']
+parm_utils.add_job_info_parms(node)
+]]>
+            </scriptCode>
+        </scriptItem>
+
+        <scriptItem id="opmenu.add_plugin_overrides">
+            <insertAfter>opmenu.add_job_overrides</insertAfter>
+            <label>Add Plug-In Overrides</label>
+            <context>
+            <expression>
+<![CDATA[
+node = kwargs["node"]
+if node.type().category().name()=='Driver':
+    return True
+return False
+]]>
+            </expression>
+	    </context>
+            <scriptCode>
+<![CDATA[
+from houdini_deadline_api_submission import parm_utils
+
+node = kwargs['node']
+parm_utils.add_plugin_info_parms(node)
+]]>
+            </scriptCode>
+        </scriptItem>
+
+        <scriptItem id="opmenu.add_wedge_parms">
+            <insertAfter>opmenu.add_plugin_overrides</insertAfter>
+            <label>Add Wedge Parameters</label>
+            <context>
+            <expression>
+<![CDATA[
+node = kwargs["node"]
+if node.type().category().name()=='Driver':
+    return True
+return False
+]]>
+            </expression>
+	    </context>
+            <scriptCode>
+<![CDATA[
+from houdini_deadline_api_submission import wedging
+
+node = kwargs['node']
+wedging.add_wedging_parms(node)
+]]>
+            </scriptCode>
+        </scriptItem>
+    </menu>
+</menuDocument>
