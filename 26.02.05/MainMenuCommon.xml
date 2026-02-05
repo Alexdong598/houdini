@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+    <subMenu>
+      <label>Houdini Dy Plugins</label>
+      <insertBefore>help_menu</insertBefore>
+
+    <!-- ======================== AA Subenu =========================== -->      
+      <!-- Create Alembic Archive -->
+      <!-- <scriptItem id="h.dy_create_alembic">
+        <label>Create Alembic Archive</label>
+        <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_alembic_archive.py</scriptPath>
+      </scriptItem> -->
+
+    <!-- ======================== Polygon Subenu =========================== -->
+
+      <!-- Create Polygon Submenu -->
+      <!-- <subMenu>
+        <label>Create Polygon</label> -->
+        
+        <!-- Create Sphere -->
+        <!-- <scriptItem id="h.dy_create_sphere">
+          <label>Create Sphere</label>
+          <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_sphere.py</scriptPath>
+        </scriptItem>
+         -->
+        <!-- Create Cube -->
+        <!-- <scriptItem id="h.dy_create_cube">
+          <label>Create Cube</label>
+          <scriptPath>$DY_SCRIPT_PATH/houdiniMenuBar/command/create_cube.py</scriptPath>
+        </scriptItem> -->
+      <!-- </subMenu> -->
+
+    <!-- ======================== FX Subenu =========================== -->
+      <!-- FX Submenu -->
+      <subMenu>
+        <label>FX</label> 
+
+        <!-- FX Playblast -->
+        <scriptItem id="h.fx_playblast">
+          <label>FX Playblast</label>
+          <scriptPath>$DY_SCRIPT_PATH\houdiniMenuBar\command\fx_playblast_sop.py</scriptPath>
+        </scriptItem>
+      </subMenu>
+
+    <!-- ======================== UTILS Subenu =========================== -->
+      <!-- UTILS Submenu -->
+      <subMenu>
+        <label>UTILS</label> 
+
+        <!-- UTILS Playblast -->
+        <scriptItem id="h.utils_get_frame_range">
+          <label>Get Shot Frame Range</label>
+          <scriptPath>$DY_SCRIPT_PATH\houdiniMenuBar\command\utils_get_frame_range.py</scriptPath>
+        </scriptItem>
+
+        <!-- Megascan Library -->
+        <scriptItem id="h.megascan_library">
+          <label>Megascan Library</label>
+          <scriptPath>$MEGASCAN_LIBRARY_PATH\startup.py</scriptPath>
+        </scriptItem>
+
+        <!-- Asset Gallery -->
+        <scriptItem id="h.asset_gallery">
+          <label>Asset Gallery</label>
+          <scriptPath>$DY_SCRIPT_PATH\houdiniMenuBar\command\asset_gallery.py</scriptPath>
+        </scriptItem>
+
+        <!-- Shotgun Library -->
+        <scriptItem id="h.shotgun_library">
+          <label>Shotgun Library</label>
+          <scriptPath>$SHOTGUN_LIBRARY_PATH\startup.py</scriptPath>
+        </scriptItem>
+      </subMenu>
+    <!-- ======================== Dev Subenu =========================== -->
+      <!-- DEV Submenu -->
+      <subMenu>
+        <label>DEV</label> 
+
+        <!-- Clean Python Shell -->
+        <scriptItem id="h.dev_clean_python_shell">
+          <label>Clean Python Shell</label>
+          <scriptPath>$DY_SCRIPT_PATH\houdiniMenuBar\command\dev_clean_python_shell.py</scriptPath>
+        </scriptItem>
+
+        <!-- HDA Version Up -->
+        <scriptItem id="h.dev_hda_version_up">
+          <label>HDA Version Up</label>
+          <scriptPath>$DY_SCRIPT_PATH\houdiniMenuBar\command\dev_hda_version_up.py</scriptPath>
+        </scriptItem>
+      </subMenu>
+    <!-- =================================================================== -->
+
+    </subMenu>
+  </menuBar>
+</mainMenu>
